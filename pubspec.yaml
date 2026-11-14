@@ -1,7 +1,7 @@
 name: magic_sentry
 description: "Sentry for Magic apps: web-safe boot before Magic.init, HTTP failure reports, auth-synced user scope and URL token masking. Inert without a DSN."
 version: 1.0.0
-homepage: https://anilcancakir.com/magic_sentry
+homepage: https://anilcancakir.com/magic/sentry
 repository: https://github.com/anilcancakir/magic_sentry
 issue_tracker: https://github.com/anilcancakir/magic_sentry/issues
 
