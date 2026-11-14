@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+
+- **The docs quote the SDK floor the package really has.** `sentry_flutter` and `sentry_dio` are `^10.4.0`, and Android needs `minSdk` 24, not 26: 10.4.0 lowered it. iOS 15 and macOS 12 stand. (`README.md`, `llms.txt`, `doc/getting-started/installation.md`, `skills/magic-sentry/SKILL.md`)
+- **The release-health note is scoped to web.** A session needing named routes holds only on web, where `SentryNavigatorObserver` starts it; the docs no longer say it for every platform, and the install stub no longer claims a router with unnamed pages "reports zero sessions". (`doc/getting-started/installation.md`, `llms.txt`, `assets/stubs/install/sentry_config.stub`, `example/lib/config/sentry.dart`)
+- **The install stub sample no longer awaits `MagicSentry.run`,** which returns `void`. (`assets/stubs/install/sentry_config.stub`, `example/lib/config/sentry.dart`)
+- **The token-grouping claim states its condition.** A failed call groups under `/api/v1/invitations/{token}/accept` only when the token is 32 or more `[A-Za-z0-9_-]` characters; a route rule does not match behind an `/api` prefix. (`doc/basics/http-reporting.md`)
+- **The README and skill samples analyse.** The `Http.get` call sits in a function and the provider entry in a `providers` list with its imports. (`README.md`, `skills/magic-sentry/SKILL.md`)
+
 ### Changed
 
 - **The package page is `https://anilcancakir.com/magic/sentry` and every documentation link sits under `https://anilcancakir.com/magic/docs/sentry`.** The pub.dev page carries it from the next release. (`pubspec.yaml`, `README.md`, `llms.txt`)

@@ -85,7 +85,7 @@ Red, green, refactor for every feature, fix or refactor: no production code with
 ## Release
 
 1. Open a `release:` PR that bumps `pubspec.yaml`, `skills/magic-sentry/SKILL.md` and the `Version:` line above, and promotes `[Unreleased]` in `CHANGELOG.md`. `.claude/commands/release.md` walks it.
-2. After it merges, tag the merge commit with the bare version (`git tag 0.0.8 && git push origin 0.0.8`, no `v`). `publish.yml` runs from the tag; the pub.dev Admin tab holds repository `anilcancakir/magic_sentry`, tag pattern `{{version}}` and push events only.
+2. After it merges, tag the merge commit with the bare version (`git tag 1.0.1 <merge-sha> && git push origin 1.0.1`, no `v`; name the merge commit, since a local checkout can still sit on the release branch tip). `publish.yml` runs from the tag; the pub.dev Admin tab holds repository `anilcancakir/magic_sentry`, tag pattern `{{version}}` and push events only.
 3. A failed `validate` is fixed forward: delete the tag (`git push --delete origin <tag>` and `git tag -d <tag>`), fix it on a PR and tag the new merge commit, because a re-run builds the same commit. If only `github-release` fails after pub.dev accepted the version, use "Re-run failed jobs" (never "Re-run all jobs", where `publish` is rejected as a duplicate) or run `gh release create <tag> --title <tag> --latest --verify-tag --notes-file <file>`.
 
 Releases publish through the tag workflow above.

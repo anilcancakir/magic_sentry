@@ -27,7 +27,7 @@ One-line lead: what the page covers and when to use it.
 <a name="related-documentation"></a>
 ## Related Documentation
 
-- [Testing](../guides/testing.md): injecting every platform read.
+- [Testing](../guides/testing.md): testing code that uses the package without a live DSN.
 ```
 
 ## Rules

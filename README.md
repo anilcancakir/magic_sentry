@@ -31,9 +31,9 @@
 | Install | `flutter pub add magic_sentry`, then `dart run magic:dowel plugin:install magic_sentry` |
 | Import | `package:magic_sentry/magic_sentry.dart` |
 | Entry points | `MagicSentry.run` (boot), `SentryServiceProvider<T>` (wiring), `SentryTokenScrubber`, `SentryNetworkInterceptor`, `SentryUserContext<T>` |
-| Platforms | Wherever `sentry_flutter` 10 runs: iOS 15+, Android `minSdk` 26+, macOS 12+, web, Windows and Linux; the zone boot is what makes web safe |
+| Platforms | Wherever `sentry_flutter` 10 runs: iOS 15+, Android `minSdk` 24+, macOS 12+, web, Windows and Linux; the zone boot is what makes web safe |
 | Requires | Dart >=3.13, Flutter >=3.47, `magic` ^1.0.0 |
-| Dependencies | `magic`, `sentry_flutter` ^10.3.0, `sentry_dio` ^10.3.0; dowel runs the installer |
+| Dependencies | `magic`, `sentry_flutter` ^10.4.0, `sentry_dio` ^10.4.0; dowel runs the installer |
 | License | MIT |
 
 ## Install
@@ -93,10 +93,14 @@ Magic's `Http` facade never throws: a failure is a `MagicResponse` value, so no 
 | Anything else (`401`, `404`, `422`) | A breadcrumb on the next event |
 
 ```dart
-final MagicResponse response = await Http.get('/monitors'); // a 503 here files one event
+import 'package:magic/magic.dart';
 
-if (!response.successful) {
-  // Already reported by the interceptor; handle the failure for the user.
+Future<void> loadMonitors() async {
+  final MagicResponse response = await Http.get('/monitors'); // a 503 here files one event
+
+  if (!response.successful) {
+    // Already reported by the interceptor; handle the failure for the user.
+  }
 }
 ```
 
@@ -104,15 +108,22 @@ An endpoint reaches Sentry with ids collapsed (`/monitors/{id}/checks`) and toke
 
 ## User and breadcrumbs
 
-Pass your own model's extractors and every event says who hit it. `Auth.stateNotifier` drives it, so logout clears the user.
+Pass your own model's extractors and every event says who hit it. `Auth.stateNotifier` drives it, so logout clears the user. `User` and its `plan` are the app's own.
 
 ```dart
-(app) => SentryServiceProvider<User>(
-  app,
-  userId: (user) => user.id?.toString() ?? '',
-  userEmail: (user) => user.email,
-  userExtras: (user) => {'plan': user.plan},
-),
+import 'package:magic_sentry/magic_sentry.dart';
+
+import '../app/models/user.dart';
+
+// The entry in the providers list of lib/config/app.dart.
+final List<Object> providers = [
+  (app) => SentryServiceProvider<User>(
+    app,
+    userId: (user) => user.id?.toString() ?? '',
+    userEmail: (user) => user.email,
+    userExtras: (user) => {'plan': user.plan},
+  ),
+];
 ```
 
 | Callback | Runs | Result |
@@ -159,7 +170,7 @@ Rules for an agent writing code against this package. Each one is a mistake the 
 
 ## Dependencies
 
-`magic` for the container, `Auth.stateNotifier`, `MagicRouter` and the event dispatcher; `sentry_flutter` for the SDK and `sentry_dio` for HTTP breadcrumbs and spans on the `Dio` network driver; `dowel` to run the installer through `dart run magic:dowel`, which resolves `package:magic_sentry/cli.dart` (`MagicSentryDowelProvider`, no commands). Version 10 of the Sentry SDK needs Android `minSdk` 26, iOS 15 and macOS 12; an app on `sentry_flutter` 9 stays on magic_sentry 0.0.6.
+`magic` for the container, `Auth.stateNotifier`, `MagicRouter` and the event dispatcher; `sentry_flutter` for the SDK and `sentry_dio` for HTTP breadcrumbs and spans on the `Dio` network driver; `dowel` to run the installer through `dart run magic:dowel`, which resolves `package:magic_sentry/cli.dart` (`MagicSentryDowelProvider`, no commands). Version 10.4 of the Sentry SDK, the floor here, needs Android `minSdk` 24, iOS 15 and macOS 12; an app on `sentry_flutter` 9 stays on magic_sentry 0.0.6.
 
 ## Links
 

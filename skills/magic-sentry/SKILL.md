@@ -1,8 +1,8 @@
 ---
 name: magic-sentry
-description: "Boot Sentry before Magic.init, report HTTP failures, track the user and mask URL tokens in a Magic app with magic_sentry."
+description: "Boot Sentry before Magic.init, report HTTP failures, track the user and mask URL tokens with magic_sentry."
 version: 1.0.0
-when_to_use: "Use when code imports package:magic_sentry or touches MagicSentry.run, SentryServiceProvider, SentryTokenScrubber or Sentry setup in a Magic app."
+when_to_use: "Use when code imports package:magic_sentry or touches MagicSentry.run, SentryServiceProvider or SentryTokenScrubber in a Magic app."
 ---
 
 # magic_sentry
@@ -18,7 +18,7 @@ flutter pub add magic_sentry
 dart run magic:dowel plugin:install magic_sentry
 ```
 
-Requires Dart >=3.13, Flutter >=3.47 and `magic` ^1.0.0, with `sentry_flutter` and `sentry_dio` ^10.3.0 pulled in (Android `minSdk` 26, iOS 15, macOS 12). The installer publishes `lib/config/sentry.dart` and registers the provider in `lib/config/app.dart`; it cannot rewrite `main()`. Import only the barrel: `package:magic_sentry/magic_sentry.dart`. `package:magic_sentry/cli.dart` (`MagicSentryDowelProvider`, no commands) is for dowel's `plugin:install`, never for app code.
+Requires Dart >=3.13, Flutter >=3.47 and `magic` ^1.0.0, with `sentry_flutter` and `sentry_dio` ^10.4.0 pulled in (Android `minSdk` 24, iOS 15, macOS 12). The installer publishes `lib/config/sentry.dart` and registers the provider in `lib/config/app.dart`; it cannot rewrite `main()`. Import only the barrel: `package:magic_sentry/magic_sentry.dart`. `package:magic_sentry/cli.dart` (`MagicSentryDowelProvider`, no commands) is for dowel's `plugin:install`, never for app code.
 
 ## Boot rules
 
@@ -79,15 +79,22 @@ Future<void> _boot() async {
 }
 ```
 
-Report the user and tag a team (`User` is the app's model):
+Report the user and tag a team (`User` and its `plan` are the app's own):
 
 ```dart
-(app) => SentryServiceProvider<User>(
-  app,
-  userId: (user) => user.id?.toString() ?? '',
-  userEmail: (user) => user.email,
-  userExtras: (user) => {'plan': user.plan},
-),
+import 'package:magic_sentry/magic_sentry.dart';
+
+import '../app/models/user.dart';
+
+// The entry in the providers list of lib/config/app.dart.
+final List<Object> providers = [
+  (app) => SentryServiceProvider<User>(
+    app,
+    userId: (user) => user.id?.toString() ?? '',
+    userEmail: (user) => user.email,
+    userExtras: (user) => {'plan': user.plan},
+  ),
+];
 ```
 
 Make an event leave a breadcrumb:
