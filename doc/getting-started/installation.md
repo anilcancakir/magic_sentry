@@ -28,7 +28,7 @@ The installer reads the package's `install.yaml`, publishes `lib/config/sentry.d
 |:------------|:------|
 | Dart | `>=3.13.0` |
 | Flutter | `>=3.47.0` |
-| Magic | `^0.1.0`, installed and bootstrapped (`lib/config/app.dart` exists). The token scrubber reads `MagicRouter.allRoutes`, which 0.0.29 introduced |
+| Magic | `^1.0.0`, installed and bootstrapped (`lib/config/app.dart` exists). The token scrubber reads `MagicRouter.allRoutes`, which 0.0.29 introduced |
 | Sentry SDK | `sentry_flutter` and `sentry_dio` `^10.3.0`, pulled in by the package. Version 10 needs Android `minSdk` 26, iOS 15 and macOS 12, and uses Swift Package Manager instead of CocoaPods |
 
 An app on `sentry_flutter` 9 stays on magic_sentry 0.0.6. Version 10 removed `enableLogs`, `enableMetrics`, `profilesSampleRate` and `enableStandaloneAppStartTracing` from the init options, and gave `beforeSendLog` and `beforeSendMetric` a second `Hint` parameter; drop or update those in your own `configure` callback.

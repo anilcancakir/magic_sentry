@@ -14,7 +14,7 @@ description: Prepare a release. Bumps the version stamps, promotes the changelog
 
 ## Arguments
 
-$ARGUMENTS: the target version (e.g. `0.0.8`, `0.1.0`). If empty, bump the patch segment.
+$ARGUMENTS: the target version (e.g. `0.0.8`, `1.0.0`). If empty, bump the patch segment.
 
 ## Your task
 

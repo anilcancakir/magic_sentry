@@ -32,7 +32,7 @@
 | Import | `package:magic_sentry/magic_sentry.dart` |
 | Entry points | `MagicSentry.run` (boot), `SentryServiceProvider<T>` (wiring), `SentryTokenScrubber`, `SentryNetworkInterceptor`, `SentryUserContext<T>` |
 | Platforms | Wherever `sentry_flutter` 10 runs: iOS 15+, Android `minSdk` 26+, macOS 12+, web, Windows and Linux; the zone boot is what makes web safe |
-| Requires | Dart >=3.13, Flutter >=3.47, `magic` ^0.1.0 |
+| Requires | Dart >=3.13, Flutter >=3.47, `magic` ^1.0.0 |
 | Dependencies | `magic`, `sentry_flutter` ^10.3.0, `sentry_dio` ^10.3.0; dowel runs the installer |
 | License | MIT |
 

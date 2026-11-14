@@ -1,7 +1,7 @@
 ---
 name: magic-sentry
 description: "Boot Sentry before Magic.init, report HTTP failures, track the user and mask URL tokens in a Magic app with magic_sentry."
-version: 0.1.0
+version: 1.0.0
 when_to_use: "Use when code imports package:magic_sentry or touches MagicSentry.run, SentryServiceProvider, SentryTokenScrubber or Sentry setup in a Magic app."
 ---
 
@@ -18,7 +18,7 @@ flutter pub add magic_sentry
 dart run magic:dowel plugin:install magic_sentry
 ```
 
-Requires Dart >=3.13, Flutter >=3.47 and `magic` ^0.1.0, with `sentry_flutter` and `sentry_dio` ^10.3.0 pulled in (Android `minSdk` 26, iOS 15, macOS 12). The installer publishes `lib/config/sentry.dart` and registers the provider in `lib/config/app.dart`; it cannot rewrite `main()`. Import only the barrel: `package:magic_sentry/magic_sentry.dart`. `package:magic_sentry/cli.dart` (`MagicSentryDowelProvider`, no commands) is for dowel's `plugin:install`, never for app code.
+Requires Dart >=3.13, Flutter >=3.47 and `magic` ^1.0.0, with `sentry_flutter` and `sentry_dio` ^10.3.0 pulled in (Android `minSdk` 26, iOS 15, macOS 12). The installer publishes `lib/config/sentry.dart` and registers the provider in `lib/config/app.dart`; it cannot rewrite `main()`. Import only the barrel: `package:magic_sentry/magic_sentry.dart`. `package:magic_sentry/cli.dart` (`MagicSentryDowelProvider`, no commands) is for dowel's `plugin:install`, never for app code.
 
 ## Boot rules
 

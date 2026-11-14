@@ -1,6 +1,6 @@
 name: magic_sentry
 description: "Sentry for Magic apps: web-safe boot before Magic.init, HTTP failure reports, auth-synced user scope and URL token masking. Inert without a DSN."
-version: 0.1.0
+version: 1.0.0
 homepage: https://anilcancakir.com/magic_sentry
 repository: https://github.com/anilcancakir/magic_sentry
 issue_tracker: https://github.com/anilcancakir/magic_sentry/issues
@@ -22,10 +22,10 @@ dependencies:
   # Auth.stateNotifier and MagicRouter.instance.addObserver land at 0.0.21;
   # Event.listenAny and ReportsBreadcrumb, which the event breadcrumbs need,
   # land at 0.0.22. The token scrubber reads
-  # MagicRouter.allRoutes, which first ships in 0.0.29. The floor is 0.1.0,
-  # the release that moved the optional layers out of core into plugins.
-  magic: ^0.1.0
-  dowel: ^0.0.21
+  # MagicRouter.allRoutes, which first ships in 0.0.29. The floor is 1.0.0,
+  # the first stable release, which moved the optional layers out of core into plugins.
+  magic: ^1.0.0
+  dowel: ^1.0.0
   sentry_flutter: ^10.4.0
   sentry_dio: ^10.4.0
 
