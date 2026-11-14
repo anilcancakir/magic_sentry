@@ -12,7 +12,7 @@ paths:
 - Wrap any test that boots `SentryServiceProvider` in `MagicRouter.reset()`: `boot()` calls `MagicRouter.instance.addObserver`, and the router is a process-global singleton with no per-test isolation.
 - A DSN is not an isolation guarantee: `Sentry.init` disables the SDK only for an empty DSN, and any syntactically valid one (the `https://public@o0.ingest.sentry.io/0` ingest host included, which is not unreachable) enables the hub and its transport. Keep the DSN empty, or do not initialise the SDK, in every test that needs no live hub, as `magic_sentry_test.dart` does.
 - A test that reads Sentry's scope (user, tag, breadcrumb) needs an enabled hub, so it initialises with a valid DSN and must then send nothing: it captures no event.
-- A test that drives a capture (a 5xx through `SentryNetworkInterceptor.onError` reaches `Sentry.captureEvent`, as does a finished transaction) sets `beforeSend` or `beforeSendTransaction` to record the item and return null, as `sentry_network_interceptor_test.dart` does, and waits for the hook before asserting. Close the SDK in `tearDown` when `Sentry.isEnabled`.
+- A test that drives a capture (a 5xx through `SentryNetworkInterceptor.onError` reaches `Sentry.captureEvent`, as does a finished transaction) sets `beforeSend` or `beforeSendTransaction` to record the item and return null, as `sentry_network_interceptor_test.dart` does, and waits for the hook before asserting. A transaction test also sets `tracesSampleRate` to `1.0`: with the default options tracing is off, the span is a no-op and the hook never runs. Close the SDK in `tearDown` when `Sentry.isEnabled`.
 
 ## Doubles and assertions
 
