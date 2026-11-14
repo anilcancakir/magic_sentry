@@ -66,13 +66,13 @@ Wherever `sentry_flutter` 10 runs: iOS 15+, Android `minSdk` 26+, macOS 12+, web
 
 ## Docs
 
-- [Installation](https://anilcancakir.com/magic_sentry/docs/getting-started/installation.md): requirements, installer, `main()`, the `.env` keys, release health.
-- [Boot and the Provider](https://anilcancakir.com/magic_sentry/docs/basics/boot-and-provider.md): what `run` and `boot()` wire, in order, inert without a DSN.
-- [HTTP Reporting](https://anilcancakir.com/magic_sentry/docs/basics/http-reporting.md): events, breadcrumbs, grouping, repeats.
-- [User Context](https://anilcancakir.com/magic_sentry/docs/basics/user-context.md): `userId`, `userEmail`, `userExtras`, sign-out.
-- [Event Breadcrumbs](https://anilcancakir.com/magic_sentry/docs/basics/event-breadcrumbs.md): `ReportsBreadcrumb` events.
-- [Token Scrubbing](https://anilcancakir.com/magic_sentry/docs/guides/token-scrubbing.md): the rules, the hooks, failing closed, limits.
-- [Testing](https://anilcancakir.com/magic_sentry/docs/guides/testing.md): placeholder DSN, pure members, a spy driver.
+- [Installation](https://anilcancakir.com/magic/docs/sentry/getting-started/installation.md): requirements, installer, `main()`, the `.env` keys, release health.
+- [Boot and the Provider](https://anilcancakir.com/magic/docs/sentry/basics/boot-and-provider.md): what `run` and `boot()` wire, in order, inert without a DSN.
+- [HTTP Reporting](https://anilcancakir.com/magic/docs/sentry/basics/http-reporting.md): events, breadcrumbs, grouping, repeats.
+- [User Context](https://anilcancakir.com/magic/docs/sentry/basics/user-context.md): `userId`, `userEmail`, `userExtras`, sign-out.
+- [Event Breadcrumbs](https://anilcancakir.com/magic/docs/sentry/basics/event-breadcrumbs.md): `ReportsBreadcrumb` events.
+- [Token Scrubbing](https://anilcancakir.com/magic/docs/sentry/guides/token-scrubbing.md): the rules, the hooks, failing closed, limits.
+- [Testing](https://anilcancakir.com/magic/docs/sentry/guides/testing.md): placeholder DSN, pure members, a spy driver.
 
 ## Links
 

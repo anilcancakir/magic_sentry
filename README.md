@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  <a href="https://anilcancakir.com/magic_sentry">Documentation</a> ·
+  <a href="https://anilcancakir.com/magic/docs/sentry">Documentation</a> ·
   <a href="https://pub.dev/packages/magic_sentry">pub.dev</a> ·
   <a href="https://github.com/anilcancakir/magic_sentry/issues">Issues</a>
 </p>
@@ -163,7 +163,7 @@ Rules for an agent writing code against this package. Each one is a mistake the 
 
 ## Links
 
-- [Documentation](https://anilcancakir.com/magic_sentry/docs/getting-started/installation): installation, boot, HTTP reporting, user context, breadcrumbs, token scrubbing and testing
+- [Documentation](https://anilcancakir.com/magic/docs/sentry/getting-started/installation): installation, boot, HTTP reporting, user context, breadcrumbs, token scrubbing and testing
 - [API reference](https://pub.dev/documentation/magic_sentry/latest/)
 - [llms.txt](llms.txt) and the [agent skill](skills/magic-sentry/SKILL.md) for AI coding agents: `npx skills add anilcancakir/magic_sentry`
 - [Changelog](CHANGELOG.md)
