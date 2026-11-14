@@ -647,7 +647,12 @@ void main() {
         ),
       );
 
-      await pumpEventQueue();
+      // `captureEvent` is not awaited by the interceptor, and how many event
+      // loop turns it needs depends on the machine: wait for the hook itself.
+      final Stopwatch waited = Stopwatch()..start();
+      while (captured == null && waited.elapsed < const Duration(seconds: 5)) {
+        await Future<void>.delayed(const Duration(milliseconds: 10));
+      }
 
       final String sentEvent = captured!.toJson().toString();
 

@@ -32,6 +32,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+- **The network interceptor test waits for the captured event instead of pumping the queue a fixed number of times.** `captureEvent` is not awaited, so how many event loop turns it needs depends on the machine, and the test failed on the CI runners that tag `1.0.0` validated on. (`test/sentry_token_scrubber_test.dart`)
 - **The docs and the post-install message return a `String` from `userId`.** `Model.id` is `dynamic` and often an `int`, and an int id throws when `SentryUserContext` installs, which takes `Magic.init` down for a session restored at boot. The samples now write `user.id?.toString() ?? ''` and the pages carry a gotcha for it. (`install.yaml`, `doc/`, `README.md`, `llms.txt`, `skills/magic-sentry/SKILL.md`)
 - **`SENTRY_RELEASE` is documented as read from the bundled `.env`.** `Env` does not read `--dart-define`, so the published config comment and the installation guide no longer say it does. (`assets/stubs/install/sentry_config.stub`, `doc/getting-started/installation.md`)
 - **The scrubber's fail-closed note matches `sentry_flutter` 10.** A throwing hook makes the SDK drop the event, breadcrumb or log, but send a streamed span half scrubbed; the scrubber keeps the report with the covered fields masked either way. `MagicSentry.run`'s doc comment now lists `beforeSendSpan` among the hooks it wraps. (`lib/src/sentry_token_scrubber.dart`, `lib/src/magic_sentry.dart`)
