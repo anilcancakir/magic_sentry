@@ -23,8 +23,8 @@ You are preparing a release of the **magic_sentry** Flutter plugin. Work through
 ### Phase 1: Validation
 
 1. **Branch**: start from an up-to-date `master` (`git fetch origin`), and cut `release/{version}` from `origin/master`.
-2. **Clean tree**: `git status` shows no uncommitted change. If dirty, STOP and warn.
-3. **Tests and analyzer**: all tests pass and the analyzer reports zero issues (see context above). If not, STOP and report.
+2. **Clean tree**: `git status` shows no uncommitted change. If dirty, stop and warn.
+3. **Tests and analyzer**: all tests pass and the analyzer reports zero issues (see context above). If not, stop and report.
 4. **Floors**: every sibling floor in `pubspec.yaml` (`magic`) names the newest published release, and so does the pubspec comment above it. A new magic API this package calls needs the floor that ships it.
 5. **Agent skill**: `skills/magic-sentry/SKILL.md` matches this release's API, rules and gotchas. Its `version:` moves with the release, and `publish.yml` compares it with the tag. The skill, `README.md`, `llms.txt` and `doc/` are what an agent adopting this package reads: `.pubignore` keeps `CLAUDE.md` and `.claude/` out of the published archive.
 
@@ -61,7 +61,7 @@ All must pass:
 
 1. Commit as `release: {version}` and push the branch by name: `git push -u origin HEAD:refs/heads/release/{version}`.
 2. Open the PR against `master` with that title (the `Changelog` check exempts `release:` titles). Body: what ships, the floors, the stamps, the gates with their counts, and the tag command.
-3. Wait for CI green; merge with `gh pr merge --squash`.
+3. Wait for CI green; merge with `gh pr merge --merge`: the repo standard is a merge commit or a rebase, never a squash, so the tagged merge commit keeps the branch history.
 
 ### Phase 6: Tag and Publish
 

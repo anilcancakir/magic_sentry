@@ -51,7 +51,7 @@ String get sentryDsn => Env.getString(sentryDsnEnvKey, '');
 /// needs:
 ///
 /// ```dart
-/// await MagicSentry.run(configure: configureSentry, appRunner: _boot);
+/// MagicSentry.run(configure: configureSentry, appRunner: _boot);
 /// ```
 ///
 /// This file was generated once by `plugin:install` from
@@ -79,9 +79,9 @@ void configureSentry(SentryFlutterOptions options) {
   // request bodies to every event.
   options.sendDefaultPii = false;
 
-  // Release health depends on named routes: `SentryNavigatorObserver` reads
-  // `RouteSettings.name`, so a router that leaves pages unnamed reports zero
-  // sessions while the transport keeps working. See
+  // On web, release health depends on named routes: `SentryNavigatorObserver`
+  // reads `RouteSettings.name`, so a router that leaves pages unnamed records
+  // no sessions while the transport keeps working. See
   // `doc/getting-started/installation.md#release-health`.
   options.enableAutoSessionTracking = true;
 }
