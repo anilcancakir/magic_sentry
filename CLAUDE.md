@@ -51,7 +51,7 @@ tool/check-docs.py             # Offline docs gate, run by docs-link-check.yml
 
 ## Post-Change Checklist
 
-After ANY source code change, sync **before committing**. A change is not done while one of these is stale:
+After a source code change, sync **before committing**. A change is not done while one of these is stale:
 
 1. **`CHANGELOG.md`**: Add entry under `[Unreleased]` section
 2. **`README.md`, `llms.txt` and the `doc/` pages**: Update if features, API, or usage changes
@@ -80,7 +80,7 @@ Red, green, refactor for every feature, fix or refactor: no production code with
 | Team logic, tags or breadcrumbs specific to one app | Does not belong here; use `userExtras` or an event implementing `ReportsBreadcrumb` |
 | A hook assigned after `SentryFlutter.init` | It replaces `SentryTokenScrubber`; set app hooks inside `configure` |
 | Bumping `sentry_flutter` or `sentry_dio` | Re-run `test/sentry_token_scrubber_test.dart` first; the scrubber must keep covering streamed spans |
-| Relative paths in `pubspec_overrides.yaml` | Use ABSOLUTE ones; the file is never committed |
+| Relative paths in `pubspec_overrides.yaml` | Use absolute ones; the file is never committed |
 
 ## Release
 
@@ -88,7 +88,7 @@ Red, green, refactor for every feature, fix or refactor: no production code with
 2. After it merges, tag the merge commit with the bare version (`git tag 0.0.8 && git push origin 0.0.8`, no `v`). `publish.yml` runs from the tag; the pub.dev Admin tab holds repository `anilcancakir/magic_sentry`, tag pattern `{{version}}` and push events only.
 3. A failed `validate` is fixed forward: delete the tag (`git push --delete origin <tag>` and `git tag -d <tag>`), fix it on a PR and tag the new merge commit, because a re-run builds the same commit. If only `github-release` fails after pub.dev accepted the version, use "Re-run failed jobs" (never "Re-run all jobs", where `publish` is rejected as a duplicate) or run `gh release create <tag> --title <tag> --latest --verify-tag --notes-file <file>`.
 
-The first publish (0.0.1) was a manual `flutter pub publish`, since tag-triggered OIDC cannot create a package.
+Releases publish through the tag workflow above.
 
 ## CI
 
