@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-11-15
+
 ### Fixed
 
 - **The deeplink breadcrumb note names what the events carry, and the scrubber order is stated as the code runs it.** `DeeplinkOpened` carries the matched route pattern, the link's source and a names-tenant flag, and `DeeplinkNavigating` the route pattern only; `scrubApiUrl` masks query values and route-bound tokens first, then runs `normalizeEndpoint`, then masks any other opaque segment. The asides about when `MagicRouter.allRoutes` and `ReportsBreadcrumb` first shipped are gone from the installation and breadcrumb pages; the upgrade note for apps still on `sentry_flutter` 9 stays. (`doc/basics/event-breadcrumbs.md`, `doc/basics/http-reporting.md`, `doc/getting-started/installation.md`)
@@ -15,7 +17,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- **The package page is `https://anilcancakir.com/magic/sentry` and every documentation link sits under `https://anilcancakir.com/magic/docs/sentry`.** The pub.dev page carries it from the next release. (`pubspec.yaml`, `README.md`, `llms.txt`)
+- **The package page is `https://anilcancakir.com/magic/sentry` and every documentation link sits under `https://anilcancakir.com/magic/docs/sentry`.** (`pubspec.yaml`, `README.md`, `llms.txt`)
 
 ## [1.0.0] - 2026-11-14
 

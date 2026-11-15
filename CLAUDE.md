@@ -2,7 +2,7 @@
 
 Sentry error and performance monitoring for the Magic Framework: a zone-wrapped boot before `Magic.init`, HTTP failure reports, a scope user that follows `Auth.stateNotifier`, event breadcrumbs and URL token masking.
 
-**Version:** 1.0.0 · **Dart:** >=3.13.0 · **Flutter:** >=3.47.0
+**Version:** 1.0.1 · **Dart:** >=3.13.0 · **Flutter:** >=3.47.0
 
 ## Commands
 

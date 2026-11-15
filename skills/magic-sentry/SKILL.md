@@ -1,7 +1,7 @@
 ---
 name: magic-sentry
 description: "Boot Sentry before Magic.init, report HTTP failures, track the user and mask URL tokens with magic_sentry."
-version: 1.0.0
+version: 1.0.1
 when_to_use: "Use when code imports package:magic_sentry or touches MagicSentry.run, SentryServiceProvider or SentryTokenScrubber in a Magic app."
 ---
 
