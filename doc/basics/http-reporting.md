@@ -50,7 +50,7 @@ There is no request body and no header in it. An app that turns `sendDefaultPii`
 
 The fingerprint carries a normalised endpoint, because a raw path holds a record id and would open one issue per record. `SentryNetworkInterceptor.normalizeEndpoint` drops the query and turns a numeric or UUID segment into `{id}`, so `/monitors/42/checks` and `/monitors/43/checks` are one issue. The status comes last in the fingerprint, which keeps one endpoint's `500` and `502` apart: they usually have different causes.
 
-What reaches Sentry goes through `SentryTokenScrubber.scrubApiUrl`, which runs `normalizeEndpoint` first and then masks what is left, so a failed invitation call groups under `/api/v1/invitations/{token}/accept` instead of carrying the token, provided the token is 32 or more `[A-Za-z0-9_-]` characters. A route rule such as `/invitations/:token/accept` matches a path that starts at the route, not one behind an `/api` prefix, so a shorter token in an API path is not masked.
+The endpoint and fingerprint of a failed HTTP call go through `SentryTokenScrubber.scrubApiUrl` (a breadcrumb or span URL keeps its ids and query and is only masked), which masks query values and route-bound tokens first, then runs `normalizeEndpoint`, and last masks any other opaque segment, so a failed invitation call groups under `/api/v1/invitations/{token}/accept` instead of carrying the token, provided the token is 32 or more `[A-Za-z0-9_-]` characters. A route rule such as `/invitations/:token/accept` matches a path that starts at the route, not one behind an `/api` prefix, so a shorter token in an API path is not masked.
 
 <a name="repeats"></a>
 ## Repeats

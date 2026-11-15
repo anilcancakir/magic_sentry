@@ -39,7 +39,7 @@ Dispatching `InvoicePaid` adds an `info` breadcrumb with that category, message 
 
 `SentryServiceProvider.boot()` registers one listener through `Event.listenAny`, which runs on every dispatch. For each event it asks `EventBreadcrumbs.breadcrumbFor`, which answers `null` unless the event implements `ReportsBreadcrumb`, and adds what it returns with `Sentry.addBreadcrumb`. This package does not know which events exist; the event opts in.
 
-`ReportsBreadcrumb` first shipped in Magic 0.0.22, together with `Event.listenAny`. A second `boot()` in the same isolate removes the previous listener before adding one, so a test suite that boots the provider again does not register it twice. `magic_deeplink`'s `DeeplinkOpened` and `DeeplinkNavigating` already implement the contract and carry only the matched route pattern.
+A second `boot()` in the same isolate removes the previous listener before adding one, so a test suite that boots the provider again does not register it twice. `magic_deeplink`'s `DeeplinkOpened` and `DeeplinkNavigating` already implement the contract: `DeeplinkOpened` carries the matched route pattern, the link's source and a names-tenant flag, and `DeeplinkNavigating` carries the route pattern only, never the path or the query.
 
 <a name="what-goes-in-the-data"></a>
 ## What Goes in the Data
