@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/anilcancakir/magic_sentry/master/screenshots/logo.png" width="120" alt="Magic Sentry logo" />
+  <img src="https://raw.githubusercontent.com/anilcancakir/magic_sentry/master/.github/logo.png" width="120" alt="Magic Sentry logo" />
 </p>
 
 <h1 align="center">Magic Sentry</h1>
